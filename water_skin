@@ -1,0 +1,24 @@
+import pandas as pd
+import matplotlib.pyplot as pt
+import sklearn.linear_model as lm
+
+# Load the data
+mydata = pd.read_csv("water.csv")
+
+# Independent and dependent variables
+x = mydata[["water_liters"]]
+y = mydata[["skin_quality_score"]]
+
+# Scatter plot
+pt.scatter(x, y)
+pt.xlabel("Water Intake (liters)")
+pt.ylabel("Skin Quality Score")
+pt.title("Water Intake vs Skin Quality")
+pt.show()
+
+# Train the model
+model = lm.LinearRegression()
+model.fit(x, y)
+
+# Predict skin quality for 2.7 liters of water intake
+print("Predicted skin quality for 2.7L water intake:", model.predict([[2.7]])[0][0])

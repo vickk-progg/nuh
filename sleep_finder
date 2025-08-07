@@ -1,0 +1,24 @@
+import pandas as pd
+import matplotlib.pyplot as pt
+import sklearn.linear_model as lm
+
+# Load the data
+mydata = pd.read_csv("sleep_bruh.csv")
+
+# Independent and dependent variables
+x = mydata[["sleep_hours"]]
+y = mydata[["productivity_score"]]
+
+# Scatter plot
+pt.scatter(x, y)
+pt.xlabel("Sleep Hours")
+pt.ylabel("Productivity Score")
+pt.title("Sleep vs Productivity")
+pt.show()
+
+# Train the model
+model = lm.LinearRegression()
+model.fit(x, y)
+
+# Predict productivity for 6.8 hours of sleep
+print("Predicted productivity for 6.8 hours of sleep:", model.predict([[6.8]])[0][0])

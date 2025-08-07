@@ -1,0 +1,18 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+data = pd.read_csv("icekream.csv")
+x = data[["temperature_celsius"]]
+y = data[["ice_cream_sales"]]
+
+plt.scatter(x, y, color='orange')
+plt.xlabel("Temperature (°C)")
+plt.ylabel("Ice Cream Sales")
+plt.title("Temperature vs Ice Cream Sales")
+plt.show()
+
+model = LinearRegression()
+model.fit(x, y)
+
+print("Predicted sales for 36°C:", model.predict([[36]])[0][0])
